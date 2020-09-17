@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const kReleaseMode = false;
+
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(

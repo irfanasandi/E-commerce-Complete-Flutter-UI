@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 import 'package:shop_app/size_config.dart';
 
-// This is the best practice
 import '../components/splash_content.dart';
-import '../../../components/default_button.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -15,18 +15,18 @@ class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "text": "Welcome to Tokoto, Let’s shop!",
+      "text": "Welcome to Tokoto, Let's Shop",
       "image": "assets/images/splash_1.png"
     },
     {
-      "text":
-          "We help people conect with store \naround United State of America",
+      "text": "We help people connect with store.",
       "image": "assets/images/splash_2.png"
     },
     {
-      "text": "We show the easy way to shop. \nJust stay at home with us",
+      "text":
+          "We show the easy way to shop. We show the easy way to shop. We show the easy way to shop.",
       "image": "assets/images/splash_3.png"
-    },
+    }
   ];
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _BodyState extends State<Body> {
                 itemCount: splashData.length,
                 itemBuilder: (context, index) => SplashContent(
                   image: splashData[index]["image"],
-                  text: splashData[index]['text'],
+                  text: splashData[index]["text"],
                 ),
               ),
             ),
@@ -56,7 +56,7 @@ class _BodyState extends State<Body> {
                 padding: EdgeInsets.symmetric(
                     horizontal: getProportionateScreenWidth(20)),
                 child: Column(
-                  children: <Widget>[
+                  children: [
                     Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -65,16 +65,22 @@ class _BodyState extends State<Body> {
                         (index) => buildDot(index: index),
                       ),
                     ),
-                    Spacer(flex: 3),
-                    DefaultButton(
-                      text: "Continue",
-                      press: () {},
+                    Spacer(flex: 2),
+                    SizedBox(
+                      width: double.infinity,
+                      height: getProportionateScreenHeight(65),
+                      child: DefaultButton(
+                        text: currentPage == 2 ? "Continue" : "Continue",
+                        press: () {
+                          Navigator.pushNamed(context, SignInScreen.routeName);
+                        },
+                      ),
                     ),
                     Spacer(),
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -85,10 +91,10 @@ class _BodyState extends State<Body> {
     return AnimatedContainer(
       duration: kAnimationDuration,
       margin: EdgeInsets.only(right: 5),
+      width: index == currentPage ? 20 : 6,
       height: 6,
-      width: currentPage == index ? 20 : 6,
       decoration: BoxDecoration(
-        color: currentPage == index ? kPrimaryColor : Color(0xFFD8D8D8),
+        color: index == currentPage ? kPrimaryColor : Color(0xFFD8D8D8),
         borderRadius: BorderRadius.circular(3),
       ),
     );
